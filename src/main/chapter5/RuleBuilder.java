@@ -2,19 +2,16 @@ package main.chapter5;
 
 public class RuleBuilder {
     private Condition condition;
-    private Action action;
 
-    public RuleBuilder when(final Condition condition) {
+    private RuleBuilder(final Condition condition) {
         this.condition = condition;
-        return this;
     }
 
-    public RuleBuilder then(final Action action) {
-        this.action = action;
-        return this;
+    public static RuleBuilder when(final Condition condition) {
+        return new RuleBuilder(condition);
     }
 
-    public DefaultRule createRule() {
+    public DefaultRule then(final Action action) {
         return new DefaultRule(condition, action);
     }
 }
